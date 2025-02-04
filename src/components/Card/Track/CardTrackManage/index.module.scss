@@ -1,0 +1,147 @@
+.event {
+  width: 95%;
+  justify-self: center;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+  margin: auto;
+  margin-bottom: 20px;
+  overflow: hidden;
+  height: 50vw;
+
+  // display: flex;
+  // flex-direction: column;
+  // position: relative;
+  .img_div {
+    border-radius: 8px 8px 0 0;
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+
+    .img {
+      width: 100%;
+      height: 100%;
+      // margin-top: 50%;
+      // transform: translateY(-50%);
+      object-fit: cover;
+    }
+
+    .date {
+      position: absolute;
+      top: 5%;
+      left: auto;
+      right: 5%;
+      width: auto;
+      display: flex;
+      justify-content: flex-end;
+      font-size: 2.7vw;
+      font-weight: 500;
+
+      // background: radial-gradient(#FFFFFFCC, #ffffff00, #FFFFFFCC, #FFFFFF00);
+      // border-radius: 8px;
+      // padding:3px;
+
+      .date_card {
+        color: #ffffff;
+        padding: 2vw;
+        background: #ffffff33;
+
+        border: 2px solid;
+        border-image-slice: 1;
+        border-image-source: linear-gradient(
+          100.79deg,
+          rgba(255, 255, 255, 0.8) -38.75%,
+          rgba(255, 255, 255, 0) 25.47%,
+          rgba(255, 255, 255, 0) 69.21%,
+          rgba(255, 255, 255, 0.8) 116.28%
+        );
+      }
+    }
+
+    .card {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 25%;
+      display: grid;
+      grid-template-columns: 75% 25%;
+      grid-template-areas: 'text btn';
+      background: linear-gradient(
+        180.01deg,
+        rgba(0, 0, 0, 0.296) 0.01%,
+        rgba(47, 44, 44, 0.9) 99.99%
+      );
+      overflow: hidden;
+      border-top: 0.5px solid;
+      border-color: #fff;
+
+      .text {
+        text-overflow: ellipsis'...';
+        white-space: nowrap;
+        color: #fff;
+        position: relative;
+        top: 0;
+        padding-left: 5%;
+        padding-top: 1%;
+
+        h1 {
+          font-size: 3vw;
+          font-weight: 700;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        p {
+          font-size: 2.3vw;
+          font-weight: 300;
+          // margin-bottom: 10px;
+        }
+      }
+
+      .price {
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 20.09px;
+        text-align: right;
+        color: #ffffff;
+        padding: 10%;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .event {
+    height: 300px;
+    width: 400px;
+    flex-basis: 30%;
+
+    .img_div {
+      .date {
+        font-size: 1em;
+
+        .date_card {
+          padding: 10px;
+        }
+      }
+      .card {
+        .text {
+          h1 {
+            font-size: 1em;
+          }
+
+          p {
+            font-size: 0.7em;
+          }
+        }
+
+        .btn {
+          font-size: 1em;
+        }
+      }
+    }
+  }
+}

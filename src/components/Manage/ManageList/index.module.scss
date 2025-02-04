@@ -1,0 +1,31 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #1db954;
+  color: white;
+  border-radius: 8px;
+  margin-bottom: 20px;
+
+  h1 {
+    margin: 0;
+    font-size: 1.5em;
+  }
+
+  .btn__primary {
+    background-color: white;
+    color: #1db954;
+    border: 1px solid white;
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #1db954;
+      color: white;
+    }
+  }
+}

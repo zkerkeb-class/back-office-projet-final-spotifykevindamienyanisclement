@@ -1,0 +1,86 @@
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.36);
+  top: 0;
+  left: 0;
+  z-index: 999;
+
+  // Animation de fondu pour l'overlay
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal {
+  position: fixed;
+  width: 80%;
+  max-width: 500px;
+  padding: 20px;
+  background: white;
+  z-index: 1000;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  // Animation pour l'apparition de la modal
+  animation: scaleIn 0.3s ease-in-out;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+
+    h2 {
+      font-size: 20px;
+      font-weight: 400;
+      color: #333;
+    }
+
+    button {
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 5px;
+
+      &:hover {
+        svg {
+          fill: grey;
+        }
+      }
+
+      svg {
+        width: 10px;
+        transition: fill 0.3s ease;
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

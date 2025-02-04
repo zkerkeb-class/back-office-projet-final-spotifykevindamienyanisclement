@@ -1,0 +1,252 @@
+.content {
+  background-color: white;
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+    overflow: hidden;
+    min-height: 30vh;
+    max-height: 50vh;
+  }
+
+  .top {
+    background-color: white;
+    transform: translate(0, -10%);
+    border-radius: 24px 24px 0 0;
+    padding: 20px;
+    padding-bottom: 0;
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 2em;
+      font-weight: 700;
+      line-height: 22px;
+      color: var(--text);
+      line-height: normal;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      // font-size: calc(2vw * 2);
+      color: var(--text);
+      font-weight: bold;
+      line-height: normal;
+    }
+
+    .location {
+      display: flex;
+      // justify-content: center;
+      flex-wrap: wrap;
+      color: #9899a0;
+
+      .icon {
+        width: 5vw;
+        height: 5vw;
+        min-width: 20px;
+        min-height: 20px;
+        max-width: 30px;
+        max-height: 30px;
+        color: #9899a0;
+      }
+    }
+
+    .date {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+
+      .dateStart {
+        background: #f7f7f7;
+        padding: 5%;
+        border-radius: 10px;
+        margin-top: 10px;
+
+        h3 {
+          // font-size: calc(2vw * 1.5);
+          color: var(--text);
+          font-weight: bold;
+          line-height: normal;
+        }
+      }
+
+      .dateEnd {
+        background: #f7f7f7;
+        padding: 5%;
+        border-radius: 10px;
+        margin-top: 10px;
+
+        h3 {
+          // font-size: calc(2vw * 1.5);
+          color: var(--text);
+          font-weight: bold;
+          line-height: normal;
+        }
+      }
+    }
+  }
+
+  .separator {
+    width: 60%;
+    border-top: 1px solid #acacac;
+    margin-left: 20%;
+  }
+
+  .textDiv {
+    padding: 20px;
+    width: 100%;
+    word-wrap: break-word;
+
+    h1 {
+      margin: 0 0 10px;
+      // font-size: calc(2vw * 3.5);
+      font-weight: 400;
+      line-height: 22px;
+      color: var(--text);
+      font-weight: bold;
+      text-align: center;
+      line-height: normal;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      // font-size: calc(2vw * 3);
+      color: var(--text);
+      font-weight: bold;
+      line-height: normal;
+    }
+
+    h3 {
+      margin: 0 0 10px;
+      // font-size: calc(2vw * 2.5);
+      color: var(--text);
+      font-weight: bold;
+      line-height: normal;
+    }
+
+    p {
+      margin: 0;
+      // font-size: calc(2vw * 2);
+      font-weight: 400;
+      line-height: 22px;
+      color: var(--text);
+      line-height: normal;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: underline;
+      font-weight: 600;
+    }
+
+    ol {
+      list-style-type: decimal;
+
+      li {
+        margin-left: 20px;
+
+        .ql-indent-1 {
+          margin-left: 40px;
+
+          &-2 {
+            margin-left: 60px;
+          }
+
+          &-3 {
+            margin-left: 80px;
+          }
+        }
+      }
+    }
+
+    ul {
+      list-style-type: disc;
+
+      li {
+        margin-left: 20px;
+
+        .ql-indent-1 {
+          margin-left: 40px;
+
+          &-2 {
+            margin-left: 60px;
+          }
+
+          &-3 {
+            margin-left: 80px;
+          }
+        }
+      }
+    }
+  }
+
+  .bottom {
+    display: flex;
+    justify-content: space-between;
+    bottom: 0px;
+    height: 70px;
+    position: fixed;
+    width: 100%;
+    background-color: white;
+    padding-top: 10px;
+    box-shadow: 0px -4px 36px 0px #00000074;
+    padding-right: 5%;
+    padding-left: 5%;
+
+    h2 {
+      // font-family: Lato;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 19px;
+      letter-spacing: 0em;
+      text-align: left;
+    }
+
+    p {
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 24px;
+      letter-spacing: 0em;
+      text-align: left;
+    }
+  }
+
+  .icon {
+    width: 5vw;
+    height: 5vw;
+    color: #fed540;
+    min-width: 20px;
+    min-height: 20px;
+    max-width: 30px;
+    max-height: 30px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .content {
+    .top {
+      .date {
+        justify-content: start;
+
+        .dateStart {
+          width: auto;
+          padding: 50px;
+
+          h3 {
+            font-size: 1em;
+          }
+        }
+
+        .dateEnd {
+          width: auto;
+          padding: 50px;
+          margin-left: 100px;
+
+          h3 {
+            font-size: 1em;
+          }
+        }
+      }
+    }
+  }
+}

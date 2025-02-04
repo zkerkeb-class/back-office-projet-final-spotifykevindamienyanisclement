@@ -1,0 +1,49 @@
+.img_div {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+
+  img {
+    aspect-ratio: 1/1;
+    max-height: 36px;
+    height: auto;
+    width: auto;
+    object-fit: cover;
+    border-radius: 3px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .event {
+    height: 300px;
+    width: 400px;
+    flex-basis: 30%;
+
+    .img_div {
+      .date {
+        font-size: 1em;
+
+        .date_card {
+          padding: 10px;
+        }
+      }
+
+      .card {
+        .text {
+          h1 {
+            font-size: 1em;
+          }
+
+          p {
+            font-size: 0.7em;
+          }
+        }
+
+        .btn {
+          font-size: 1em;
+        }
+      }
+    }
+  }
+}

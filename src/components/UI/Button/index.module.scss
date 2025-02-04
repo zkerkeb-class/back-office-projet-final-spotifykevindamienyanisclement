@@ -1,0 +1,321 @@
+@mixin cross($size: 10px, $color: currentColor, $thickness: 1px) {
+  &:after {
+    display: inline-block;
+    content: '\00d7';
+    width: $size;
+    height: $size;
+    position: relative;
+  }
+}
+
+.btn {
+  display: inline-block;
+  padding: 5px 15px;
+  font-size: 1em;
+  font-weight: 400;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: 0.3s all;
+  background-color: white;
+  border-radius: 0.5rem;
+
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &__primary {
+    background: rgba(255, 219, 136, 1);
+    color: black;
+    border: 1px solid rgba(255, 219, 136, 1);
+    border-radius: 30px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    font-size: 1em;
+    display: flex;
+    justify-content: center;
+
+    &:hover {
+      background: white;
+      color: #1db954;
+      border: 1px solid #1db954;
+    }
+
+    .title {
+      justify-self: center;
+      align-self: center;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .image {
+      width: 50px;
+      height: 50px;
+      align-self: center;
+      margin-left: 10%;
+      margin-right: 5%;
+    }
+  }
+
+  &__secondary {
+    background: rgb(255, 255, 255);
+    color: black;
+    border: 1px solid rgba(255, 219, 136, 1);
+    border-radius: 30px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    font-size: 1em;
+    display: flex;
+    justify-content: center;
+
+    &:hover {
+      background: #1db954;
+      color: white;
+      border: 1px solid #1db954;
+    }
+
+    .title {
+      justify-self: center;
+      align-self: center;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .image {
+      width: 50px;
+      height: 50px;
+      align-self: center;
+      margin-left: 10%;
+      margin-right: 5%;
+    }
+  }
+
+  // bouton delete (ternary)
+
+  &__ternary {
+    background: #ffdb88;
+    color: black;
+    border: 1px solid #ffdb88;
+    border-radius: 30px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    font-size: 1em;
+    display: flex;
+    justify-content: center;
+
+    &:hover {
+      background: white;
+      color: black;
+      border: 1px solid #ffdb88;
+    }
+
+    .title {
+      justify-self: center;
+      align-self: center;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    &__secondary {
+      background: rgb(255, 255, 255);
+      color: black;
+      border: 1px solid rgba(255, 219, 136, 1);
+      border-radius: 10px;
+      width: 100%;
+      // min-width: 326px;
+      // min-height: 48px;
+      margin-bottom: 5px;
+      margin-top: 5px;
+      font-weight: 400;
+      font-size: 1.2em;
+      display: flex;
+      justify-content: center;
+
+      .title {
+        justify-self: center;
+        align-self: center;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      &:hover {
+        background: white;
+        border: 1px solid rgba(255, 219, 136, 1);
+        color: black;
+      }
+    }
+  }
+
+  &__important {
+    background: #ff7455;
+    color: white;
+    border: 1px solid #ff7455;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+
+    .title {
+      justify-self: center;
+      align-self: center;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    &:hover {
+      background: white;
+      color: #ff7455;
+      border: 1px solid #ff7455;
+    }
+  }
+
+  &__remove {
+    background: #ffdb88;
+    color: black;
+    border-radius: 10px;
+    font-size: 1em;
+    padding: 5px 10px;
+    margin: 1px;
+    display: flex;
+    @include cross(20px, black, 2px);
+
+    .title {
+      justify-self: center;
+      align-self: center;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+
+  &__register {
+    background: #ffdb88;
+    color: black;
+    border: 1px solid #ffdb88;
+    border-radius: 5px;
+    width: 100%;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+
+    .title {
+      justify-self: center;
+      align-self: center;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    &:hover {
+      background: white;
+      color: black;
+      border: 1px solid #ffdb88;
+    }
+  }
+
+  &__icon {
+    &__selected {
+      background: #ffdb88;
+      color: black;
+      border: 1px solid #ffdb88;
+      border-radius: 8px;
+      width: 70px;
+      height: 68px;
+      font-weight: 300;
+      font-size: 0.9em;
+    }
+
+    &__unselected {
+      background: white;
+      color: rgba(152, 153, 160, 1);
+      border: 1px solid white;
+      border-radius: 8px;
+      width: 70px;
+      height: 68px;
+      font-weight: 300;
+      font-size: 0.9em;
+    }
+
+    &__back {
+      width: 20px;
+      height: 20px;
+      border-radius: 10px;
+      padding: 0;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .icon {
+        color: black;
+        margin: auto;
+      }
+
+      &__background {
+        background: #b6b6b6c8;
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .icon {
+          color: rgb(0, 0, 0);
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+
+    &__item {
+      display: flex;
+      flex-direction: column;
+      max-width: 100px;
+      text-align: center;
+      font-size: 10px;
+      align-self: flex-start;
+      align-self: center;
+      padding: 0;
+
+      .image {
+        width: 50px;
+        height: 50px;
+        align-self: center;
+      }
+
+      .icon {
+        color: #c9c9c9;
+        align-self: center;
+        width: 20px;
+        height: 20px;
+
+        &__close {
+          align-self: center;
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .btn {
+    &__icon {
+      &__item {
+        .icon {
+          width: 40px;
+          height: 40px;
+
+          // margin: 5px;
+          &__close {
+            width: 40px;
+            height: 40px;
+          }
+        }
+      }
+    }
+  }
+}

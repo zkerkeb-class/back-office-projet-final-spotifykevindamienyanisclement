@@ -1,0 +1,24 @@
+.card {
+    background-color: rgba(255, 255, 255, 0.085);
+    width: 90%;
+    height: 36px;
+    border-radius: 15px;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .btn_div {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+
+    .card {
+        flex-basis: 30%;
+        justify-self: center;
+    }
+}

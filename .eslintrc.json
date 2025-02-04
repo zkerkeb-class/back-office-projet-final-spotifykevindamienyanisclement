@@ -16,9 +16,15 @@
   ],
   "overrides": [
     {
-      "files": ["*.ts", "*.tsx"],
+      "files": [".ts", ".tsx"],
       "rules": {
         "react/prop-types": "off"
+      }
+    },
+    {
+      "files": ["next.config.mjs"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
       }
     }
   ],
@@ -29,26 +35,39 @@
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
-    },
-    "extraFileExtensions": [".css"]
+    }
   },
   "plugins": ["react", "@typescript-eslint", "prettier"],
-  "ignorePatterns": ["*.css", "*.scss", "*.less", "commitlint.config.js"],
+  "ignorePatterns": [".css", ".scss", "*.less", "commitlint.config.js"],
   "rules": {
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/lines-between-class-members": "off",
+    "@typescript-eslint/no-require-imports": "off",
+    "@typescript-eslint/no-var-requires": "warn",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-unused-expressions": "warn",
+    "@typescript-eslint/no-explicit-any": "warn",
     "@typescript-eslint/no-throw-literal": "off",
+    "consistent-return": "off",
+    "@typescript-eslint/consistent-return": "off",
+    "jsx-a11y/label-has-associated-control": "off",
     "prettier/prettier": [
       "error",
       {
         "endOfLine": "auto"
       }
     ],
-    "semi": ["error", "always"]
+    "semi": ["error", "always"],
+    "no-console": "warn"
   },
   "settings": {
     "react": {
       "version": "detect"
+    },
+    "import/resolver": {
+      "typescript": {
+        "project": "./tsconfig.json"
+      }
     }
   }
 }
