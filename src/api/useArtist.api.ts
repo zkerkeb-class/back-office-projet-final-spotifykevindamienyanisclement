@@ -1,13 +1,18 @@
 import { IResponse } from '@/types/response';
-import { IArtist } from '@/interfaces/artist.interface';
-import FetchPulseApi from './fetch';
+import { useRouter } from 'next/navigation';
+import FetchSpotifyApi from './fetch';
 
 const useArtistApi = () => {
-  const getArtists = async (): Promise<IResponse> => {
-    const { data, error, success, code }: IResponse = await FetchPulseApi({
+  const router = useRouter();
+
+  const getArtists = async (
+    limit: number,
+    offset: number
+  ): Promise<IResponse> => {
+    const { data, error, success, code }: IResponse = await FetchSpotifyApi({
       url: '/artist',
       method: 'GET',
-      params: null,
+      params: { limit, offset },
       accessToken: null,
       logout: null,
     });
@@ -15,7 +20,7 @@ const useArtistApi = () => {
   };
 
   const getArtistDetails = async (id: string): Promise<IResponse> => {
-    const { data, error, success, code }: IResponse = await FetchPulseApi({
+    const { data, error, success, code }: IResponse = await FetchSpotifyApi({
       url: `/artist/${id}`,
       method: 'GET',
       params: null,
@@ -31,14 +36,18 @@ const useArtistApi = () => {
       error,
       success,
       code,
-    }: IResponse = await FetchPulseApi({
+    }: IResponse = await FetchSpotifyApi({
       url: '/artist',
       method: 'POST',
       body: data,
       params: null,
-      accessToken: null,
+      accessToken: JSON.parse(localStorage.getItem('token') || '{}'),
       logout: null,
     });
+    if (code === 400 || code === 401) {
+      localStorage.removeItem('token');
+      router.push('/login');
+    }
     return { data: responseData, error, success, code };
   };
 
@@ -48,25 +57,32 @@ const useArtistApi = () => {
       error,
       success,
       code,
-    }: IResponse = await FetchPulseApi({
+    }: IResponse = await FetchSpotifyApi({
       url: `/artist/${id}`,
       method: 'PUT',
       body: data,
       params: null,
-      accessToken: null,
+      accessToken: JSON.parse(localStorage.getItem('token') || '{}'),
       logout: null,
     });
+    if (code === 400 || code === 401) {
+      localStorage.removeItem('token');
+      router.push('/login');
+    }
     return { data: responseData, error, success, code };
   };
 
   const deleteArtist = async (id: string): Promise<IResponse> => {
-    const { data, error, success, code }: IResponse = await FetchPulseApi({
+    const { data, error, success, code }: IResponse = await FetchSpotifyApi({
       url: `/artist/${id}`,
       method: 'DELETE',
       params: null,
-      accessToken: null,
+      accessToken: JSON.parse(localStorage.getItem('token') || '{}'),
       logout: null,
     });
+    if (code === 400 || code === 401) {
+      router.push('/login');
+    }
     return { data, error, success, code };
   };
 

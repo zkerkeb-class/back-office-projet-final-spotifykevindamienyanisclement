@@ -6,6 +6,7 @@ import CardUserManage from '@/components/Card/User/CardUserManage';
 import WrapperUser from '@/components/Wrapper/WrapperUser';
 import FormUserFull from '@/components/Form/FormUserFull';
 import { IUser } from '@/types/user';
+import styles from './index.module.scss';
 
 function Index() {
   const { getUsers, createUser, deleteUser, updateUser } = useUserApi();
@@ -20,7 +21,6 @@ function Index() {
       editDataAPI={updateUser}
       limit={10}
       Wrapper={WrapperUser}
-      // textTitle="Liste des utilisateurs"
     />
   );
 }

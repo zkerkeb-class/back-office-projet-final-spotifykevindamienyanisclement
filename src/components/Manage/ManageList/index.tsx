@@ -13,7 +13,7 @@ import Button from '@/components/UI/Button';
 
 interface IManageList {
   Card: FC<any>;
-  getDataAPI: (page: number, limit: number) => Promise<any>;
+  getDataAPI: (limit: number, offset: number) => Promise<any>;
   editDataAPI: (id: string, data: any) => Promise<any>;
   deleteDataAPI: (id: string) => Promise<any>;
   FormEdit: FC<any>;
@@ -48,7 +48,8 @@ function ManageList({
   const fetchData = async () => {
     if (page === -1) return;
     setLoading(true);
-    getDataAPI(page, limit).then(({ data, success, code }: IResponse) => {
+    const offset = page * limit;
+    getDataAPI(limit, offset).then(({ data, success, code }: IResponse) => {
       if (code === 404 || !success || data?.length === 0) {
         setHasMore(false);
         setLoading(false);
@@ -134,7 +135,7 @@ function ManageList({
       >
         <div>
           <p>Êtes-vous sûr de vouloir supprimer cet élément ?</p>
-          <div className="flex gap-4 justify-end mt-4">
+          <div>
             <Button
               title="Annuler"
               className="btn__primary"
@@ -164,8 +165,8 @@ function ManageList({
         Wrapper={Wrapper}
         Card={props => (
           <FullCard
-            key={props.data.id}
-            data={props.data.data}
+            key={props.id}
+            data={props.data}
             Card={Card}
             setEditData={setEditData}
             setDeleteData={setDeleteData}

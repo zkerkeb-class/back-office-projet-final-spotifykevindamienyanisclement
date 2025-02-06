@@ -35,7 +35,7 @@ function Index() {
 
   useEffect(() => {
     if (data && data.token) {
-      localStorage.setItem('token', JSON.stringify(data.token));
+      localStorage.setItem('token', JSON.stringify(`Bearer ${data.token}`));
       router.push('/');
     }
   }, [data, router]);

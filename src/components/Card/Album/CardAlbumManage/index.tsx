@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { IAlbum } from '@/types/album';
+import normalizeImageUrl from '@/utils/normalizeImageUrl';
 import styles from './index.module.scss';
 
 interface IaProps {
@@ -29,7 +30,7 @@ function Index({ data: album }: IaProps) {
       <div className={styles.img_div}>
         {album.image && (
           <Image
-            src={album.image.formattedImageURL}
+            src={normalizeImageUrl(album?.image.formattedImageURL)}
             alt={album?.title}
             className={styles.img}
             width={200}

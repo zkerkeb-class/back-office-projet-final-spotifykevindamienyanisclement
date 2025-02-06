@@ -1,14 +1,20 @@
 import { IResponse } from '@/types/response';
 import { ITrack, ITrackFull } from '@/types/track';
-import FetchPulseApi from './fetch';
+import { useRouter } from 'next/navigation';
+import FetchSpotifyApi from './fetch';
 
 const useTrackApi = () => {
-  const getTracks = async (): Promise<IResponse<ITrackFull[]>> => {
+  const router = useRouter();
+
+  const getTracks = async (
+    limit: number,
+    offset: number
+  ): Promise<IResponse<ITrackFull[]>> => {
     const { data, error, success, code }: IResponse<ITrackFull[]> =
-      await FetchPulseApi({
+      await FetchSpotifyApi({
         url: '/track',
         method: 'GET',
-        params: null,
+        params: { limit, offset },
         accessToken: null,
         logout: null,
       });
@@ -19,7 +25,7 @@ const useTrackApi = () => {
     id: string | number
   ): Promise<IResponse<ITrackFull>> => {
     const { data, error, success, code }: IResponse<ITrackFull> =
-      await FetchPulseApi({
+      await FetchSpotifyApi({
         url: `/track/${id}`,
         method: 'GET',
         params: null,
@@ -31,14 +37,18 @@ const useTrackApi = () => {
 
   const createTrack = async (body: ITrack): Promise<IResponse<ITrackFull>> => {
     const { data, error, success, code }: IResponse<ITrackFull> =
-      await FetchPulseApi({
+      await FetchSpotifyApi({
         url: '/track',
         method: 'POST',
         body,
         params: null,
-        accessToken: null,
+        accessToken: JSON.parse(localStorage.getItem('token') || '{}'),
         logout: null,
       });
+    if (code === 400 || code === 401) {
+      localStorage.removeItem('token');
+      router.push('/login');
+    }
     return { data, error, success, code };
   };
 
@@ -47,14 +57,18 @@ const useTrackApi = () => {
     body: Partial<ITrack>
   ): Promise<IResponse<ITrackFull>> => {
     const { data, error, success, code }: IResponse<ITrackFull> =
-      await FetchPulseApi({
+      await FetchSpotifyApi({
         url: `/track/${id}`,
         method: 'PUT',
         body,
         params: null,
-        accessToken: null,
+        accessToken: JSON.parse(localStorage.getItem('token') || '{}'),
         logout: null,
       });
+    if (code === 400 || code === 401) {
+      localStorage.removeItem('token');
+      router.push('/login');
+    }
     return { data, error, success, code };
   };
 
@@ -62,13 +76,17 @@ const useTrackApi = () => {
     id: string | number
   ): Promise<IResponse<ITrackFull>> => {
     const { data, error, success, code }: IResponse<ITrackFull> =
-      await FetchPulseApi({
+      await FetchSpotifyApi({
         url: `/track/${id}`,
         method: 'DELETE',
         params: null,
-        accessToken: null,
+        accessToken: JSON.parse(localStorage.getItem('token') || '{}'),
         logout: null,
       });
+    if (code === 400 || code === 401) {
+      localStorage.removeItem('token');
+      router.push('/login');
+    }
     return { data, error, success, code };
   };
 

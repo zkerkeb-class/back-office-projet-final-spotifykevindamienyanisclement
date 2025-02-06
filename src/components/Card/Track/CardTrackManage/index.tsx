@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { ITrackFull } from '@/types/track';
+import normalizeImageUrl from '@/utils/normalizeImageUrl';
 import styles from './index.module.scss';
 
 interface IaProps {
@@ -29,7 +30,7 @@ function CardTrackManage({ data: track }: IaProps) {
       <div className={styles.img_div}>
         {track.album?.image && (
           <Image
-            src={track.album.image.formattedImageURL}
+            src={normalizeImageUrl(track?.album.image.formattedImageURL)}
             alt={track?.title}
             className={styles.img}
             width={200}

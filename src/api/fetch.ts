@@ -1,22 +1,24 @@
 import { IResponse } from '@/types/response';
 
-interface IFetchPulseApi {
+interface IFetchSpotifyApi {
   url: string;
   method: string;
   body?: any;
+  formData?: any;
   params?: any;
   accessToken: string | null;
   logout: (() => void) | null;
 }
 
-const FetchPulseApi = async ({
+const FetchSpotifyApi = async ({
   url,
   method,
   body,
+  formData,
   params,
   accessToken,
   logout,
-}: IFetchPulseApi): Promise<IResponse> => {
+}: IFetchSpotifyApi): Promise<IResponse> => {
   let data = null;
   let success = false;
   let error: Error | null = null;
@@ -28,21 +30,32 @@ const FetchPulseApi = async ({
       }, 10000);
     });
 
-    const responsePromise = fetch(`${process.env.NEXT_PUBLIC_API_URL}${url}`, {
-      headers: {
-        ...(accessToken && {
-          authorization: accessToken,
+    const urlParams = new URLSearchParams(params).toString();
+
+    const responsePromise = fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}${url}?${urlParams}`,
+      {
+        headers: {
+          ...(accessToken && {
+            authorization: accessToken,
+          }),
+
+          ...(body && {
+            'Content-Type': 'application/json',
+          }),
+        },
+        ...(params && {
+          params: JSON.stringify(params),
         }),
-        'Content-Type': body ? 'application/json' : 'text/plain',
-      },
-      method,
-      ...(body && {
-        body: JSON.stringify(body),
-      }),
-      ...(params && {
-        params: JSON.stringify(params),
-      }),
-    });
+        method,
+        ...(body && {
+          body: JSON.stringify(body),
+        }),
+        ...(formData && {
+          body: formData,
+        }),
+      }
+    );
 
     const response = (await Promise.race([
       responsePromise,
@@ -67,4 +80,4 @@ const FetchPulseApi = async ({
   }
 };
 
-export default FetchPulseApi;
+export default FetchSpotifyApi;

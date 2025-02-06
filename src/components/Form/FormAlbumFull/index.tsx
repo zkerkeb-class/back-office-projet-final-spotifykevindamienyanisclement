@@ -1,6 +1,7 @@
 import { ChangeEvent } from 'react';
 import Input from '@/components/UI/Input';
-import Image from 'next/image';
+import normalizeImageUrl from '@/utils/normalizeImageUrl';
+import FileUploader from '@/components/UI/FileUploader';
 
 interface IFormEventCreate {
   dataForm: any;
@@ -25,22 +26,28 @@ function FormAlbumFull({
         onChange={(e: any) => handleChange(e)}
         value={dataForm?.name}
       />
-      <Input
+      <FileUploader
         label="Image de l'album"
-        type="file"
-        accept="image/*"
         name="image"
-        placeholder="Veuillez saisir l'image de l'album"
-        onChange={(e: any) => handleImage(e)}
-        value=""
+        acceptImagesOnly
+        defaultValue={normalizeImageUrl(dataForm?.image.formattedImageURL)}
+        onFileUpload={(file: any) => {
+          const image = {
+            target: {
+              name: 'image',
+              value: file,
+            },
+          } as ChangeEvent<HTMLInputElement>;
+          handleChange(image);
+          const imageId = {
+            target: {
+              name: 'imageId',
+              value: file.id,
+            },
+          } as ChangeEvent<HTMLInputElement>;
+          handleChange(imageId);
+        }}
       />
-      {dataForm?.image && (
-        <Image
-          src={dataForm?.image}
-          alt="image de l'album"
-          style={{ width: '100px' }}
-        />
-      )}
     </>
   );
 }

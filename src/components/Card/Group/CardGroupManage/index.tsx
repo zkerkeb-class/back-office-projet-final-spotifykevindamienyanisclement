@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { IGroup } from '@/types/group';
+import normalizeImageUrl from '@/utils/normalizeImageUrl';
 import styles from './index.module.scss';
 
 interface IaProps {
@@ -29,7 +30,7 @@ function Index({ data: group }: IaProps) {
       <div className={styles.img_div}>
         {group.image && (
           <Image
-            src={group.image.formattedImageURL}
+            src={normalizeImageUrl(group?.image.formattedImageURL)}
             alt={group?.name}
             className={styles.img}
             width={200}

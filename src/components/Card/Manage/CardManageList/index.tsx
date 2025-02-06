@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import Button from '@/components/UI/Button';
 import Spacer from '@/components/UI/Spacer';
 import styles from './index.module.scss';

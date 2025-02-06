@@ -1,18 +1,15 @@
 import { ChangeEvent } from 'react';
 import Input from '@/components/UI/Input';
 import Image from 'next/image';
+import normalizeImageUrl from '@/utils/normalizeImageUrl';
+import FileUploader from '@/components/UI/FileUploader';
 
 interface IFormEventCreate {
   dataForm: any;
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  handleImage: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-function FormArtistFull({
-  dataForm,
-  handleChange,
-  handleImage,
-}: IFormEventCreate) {
+function FormArtistFull({ dataForm, handleChange }: IFormEventCreate) {
   return (
     <>
       <Input
@@ -25,22 +22,28 @@ function FormArtistFull({
         onChange={(e: any) => handleChange(e)}
         value={dataForm?.name}
       />
-      <Input
+      <FileUploader
         label="Image de l'artiste"
-        type="file"
-        accept="image/*"
         name="image"
-        placeholder="Veuillez saisir l'image de l'artiste"
-        onChange={(e: any) => handleImage(e)}
-        value=""
+        acceptImagesOnly
+        defaultValue={normalizeImageUrl(dataForm?.image.formattedImageURL)}
+        onFileUpload={(file: any) => {
+          const image = {
+            target: {
+              name: 'image',
+              value: file,
+            },
+          } as ChangeEvent<HTMLInputElement>;
+          handleChange(image);
+          const imageId = {
+            target: {
+              name: 'imageId',
+              value: file.id,
+            },
+          } as ChangeEvent<HTMLInputElement>;
+          handleChange(imageId);
+        }}
       />
-      {dataForm?.image && (
-        <Image
-          src={dataForm?.image}
-          alt="image de l'artiste"
-          style={{ width: '100px' }}
-        />
-      )}
     </>
   );
 }

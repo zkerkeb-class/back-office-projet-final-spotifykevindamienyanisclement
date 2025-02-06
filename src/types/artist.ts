@@ -7,7 +7,8 @@ export interface IArtist {
   id: string | number;
   name: string;
 
-  image: string;
+  imageId: number | null;
+  image: IImage | null;
 
   albums: IAlbum[];
   tracks: ITrack[];

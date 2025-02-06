@@ -1,14 +1,20 @@
 import { IResponse } from '@/types/response';
 import { IAlbum } from '@/types/album';
-import FetchPulseApi from './fetch';
+import { useRouter } from 'next/navigation';
+import FetchSpotifyApi from './fetch';
 
 const useAlbumApi = () => {
-  const getAlbums = async (): Promise<IResponse<IAlbum[]>> => {
+  const router = useRouter();
+
+  const getAlbums = async (
+    limit: number,
+    offset: number
+  ): Promise<IResponse<IAlbum[]>> => {
     const { data, error, success, code }: IResponse<IAlbum[]> =
-      await FetchPulseApi({
+      await FetchSpotifyApi({
         url: '/album',
         method: 'GET',
-        params: null,
+        params: { limit, offset },
         accessToken: null,
         logout: null,
       });
@@ -19,7 +25,7 @@ const useAlbumApi = () => {
     id: string | number
   ): Promise<IResponse<IAlbum>> => {
     const { data, error, success, code }: IResponse<IAlbum> =
-      await FetchPulseApi({
+      await FetchSpotifyApi({
         url: `/album/${id}`,
         method: 'GET',
         params: null,
@@ -31,14 +37,18 @@ const useAlbumApi = () => {
 
   const createAlbum = async (body: IAlbum): Promise<IResponse<IAlbum>> => {
     const { data, error, success, code }: IResponse<IAlbum> =
-      await FetchPulseApi({
+      await FetchSpotifyApi({
         url: '/album',
         method: 'POST',
         body,
         params: null,
-        accessToken: null,
+        accessToken: JSON.parse(localStorage.getItem('token') || '{}'),
         logout: null,
       });
+    if (code === 400 || code === 401) {
+      localStorage.removeItem('token');
+      router.push('/login');
+    }
     return { data, error, success, code };
   };
 
@@ -47,14 +57,18 @@ const useAlbumApi = () => {
     body: Partial<IAlbum>
   ): Promise<IResponse<IAlbum>> => {
     const { data, error, success, code }: IResponse<IAlbum> =
-      await FetchPulseApi({
+      await FetchSpotifyApi({
         url: `/album/${id}`,
         method: 'PUT',
         body,
         params: null,
-        accessToken: null,
+        accessToken: JSON.parse(localStorage.getItem('token') || '{}'),
         logout: null,
       });
+    if (code === 400 || code === 401) {
+      localStorage.removeItem('token');
+      router.push('/login');
+    }
     return { data, error, success, code };
   };
 
@@ -62,13 +76,17 @@ const useAlbumApi = () => {
     id: string | number
   ): Promise<IResponse<IAlbum>> => {
     const { data, error, success, code }: IResponse<IAlbum> =
-      await FetchPulseApi({
+      await FetchSpotifyApi({
         url: `/album/${id}`,
         method: 'DELETE',
         params: null,
-        accessToken: null,
+        accessToken: JSON.parse(localStorage.getItem('token') || '{}'),
         logout: null,
       });
+    if (code === 400 || code === 401) {
+      localStorage.removeItem('token');
+      router.push('/login');
+    }
     return { data, error, success, code };
   };
 

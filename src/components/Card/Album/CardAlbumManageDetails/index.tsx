@@ -1,6 +1,7 @@
 import Spacer from '@/components/UI/Spacer';
 import Image from 'next/image';
 import { IAlbum } from '@/types/album';
+import normalizeImageUrl from '@/utils/normalizeImageUrl';
 import styles from './index.module.scss';
 
 interface IaProps {
@@ -12,7 +13,7 @@ function Index({ data: album }: IaProps) {
     <div className={styles.content}>
       {album?.image && (
         <Image
-          src={album.image.formattedImageURL}
+          src={normalizeImageUrl(album?.image.formattedImageURL)}
           alt={album.title}
           width={200}
           height={200}

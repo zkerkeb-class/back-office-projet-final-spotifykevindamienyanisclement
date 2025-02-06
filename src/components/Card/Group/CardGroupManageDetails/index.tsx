@@ -1,6 +1,7 @@
 import Spacer from '@/components/UI/Spacer';
 import Image from 'next/image';
 import { IGroup } from '@/types/group';
+import normalizeImageUrl from '@/utils/normalizeImageUrl';
 import styles from './index.module.scss';
 
 interface IaProps {
@@ -12,7 +13,7 @@ function CardGroupManageDetails({ data: group }: IaProps) {
     <div className={styles.content}>
       {group?.image && (
         <Image
-          src={group.image.formattedImageURL}
+          src={normalizeImageUrl(group?.image.formattedImageURL)}
           alt={group.name}
           width={200}
           height={200}

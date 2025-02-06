@@ -1,0 +1,38 @@
+.nav_width {
+  width: 200px;
+}
+
+.navbar {
+  position: fixed;
+  min-height: 100vh;
+  width: 200px;
+  height: 100%;
+  top: 60px;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 40px 0;
+  background-color: #ffffff09;
+
+  .link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 90%;
+    border-radius: 5px;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #ffffff16;
+    }
+
+    &.active {
+      background-color: #ffffff16;
+    }
+  }
+}
