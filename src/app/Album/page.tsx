@@ -7,11 +7,10 @@ import ManageList from '@/components/Manage/ManageList';
 import CardAlbumManage from '@/components/Card/Album/CardAlbumManage';
 import WrapperAlbum from '@/components/Wrapper/WrapperAlbum';
 import FormAlbumFull from '@/components/Form/FormAlbumFull';
-import { IAlbum } from '@/types/album';
 import styles from './index.module.scss';
 
 function Index() {
-  const { getAlbums, createAlbum, deleteAlbum, updateAlbum } = useAlbumApi();
+  const { deleteAlbum, updateAlbum, getAlbums } = useAlbumApi();
 
   return (
     <div className={styles.container}>
@@ -20,10 +19,9 @@ function Index() {
         Card={CardAlbumManage}
         FormEdit={FormAlbumFull}
         getDataAPI={getAlbums}
-        // createDataAPI={createAlbum}
         deleteDataAPI={deleteAlbum}
         editDataAPI={updateAlbum}
-        limit={10}
+        limit={15}
         Wrapper={WrapperAlbum}
       />
     </div>

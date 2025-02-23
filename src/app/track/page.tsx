@@ -9,7 +9,7 @@ import { ITrackFull } from '@/types/track';
 import styles from './index.module.scss';
 
 function Index() {
-  const { getTracks, createTrack, deleteTrack, updateTrack } = useTrackApi();
+  const { getTracks, deleteTrack, updateTrack } = useTrackApi();
 
   return (
     <div className={styles.container}>
@@ -21,7 +21,7 @@ function Index() {
         // createDataAPI={createTrack}
         deleteDataAPI={deleteTrack}
         editDataAPI={updateTrack}
-        limit={10}
+        limit={15}
         Wrapper={WrapperTrack}
       />
     </div>

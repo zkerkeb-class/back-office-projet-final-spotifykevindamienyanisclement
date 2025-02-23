@@ -14,7 +14,8 @@
   align-items: center;
   gap: 15px;
   padding: 40px 0;
-  background-color: #ffffff09;
+  background-color: #171717;
+  z-index: 1000;
 
   .link {
     display: flex;
@@ -28,11 +29,11 @@
     transition: background-color 0.3s;
 
     &:hover {
-      background-color: #ffffff16;
+      background-color: #232323;
     }
 
     &.active {
-      background-color: #ffffff16;
+      background-color: #232323;
     }
   }
 }

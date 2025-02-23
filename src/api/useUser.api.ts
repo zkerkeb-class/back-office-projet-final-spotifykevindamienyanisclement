@@ -1,18 +1,19 @@
 import { IResponse } from '@/types/response';
 import { IUser } from '@/types/user';
 import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 import FetchSpotifyApi from './fetch';
 
 const useUserApi = () => {
   const router = useRouter();
 
-  const getUsers = async (
+  const getuser = async (
     limit: number,
     offset: number
   ): Promise<IResponse<IUser[]>> => {
     const { data, error, success, code }: IResponse<IUser[]> =
       await FetchSpotifyApi({
-        url: '/users',
+        url: '/user',
         method: 'GET',
         params: { limit, offset },
         accessToken: null,
@@ -26,7 +27,7 @@ const useUserApi = () => {
   ): Promise<IResponse<IUser>> => {
     const { data, error, success, code }: IResponse<IUser> =
       await FetchSpotifyApi({
-        url: `/users/${id}`,
+        url: `/user/${id}`,
         method: 'GET',
         params: null,
         accessToken: null,
@@ -38,15 +39,15 @@ const useUserApi = () => {
   const createUser = async (body: IUser): Promise<IResponse<IUser>> => {
     const { data, error, success, code }: IResponse<IUser> =
       await FetchSpotifyApi({
-        url: '/users',
+        url: '/user',
         method: 'POST',
         body,
         params: null,
-        accessToken: JSON.parse(localStorage.getItem('token') || '{}'),
+        accessToken: JSON.parse(Cookies.get('token') || '{}'),
         logout: null,
       });
     if (code === 400 || code === 401) {
-      localStorage.removeItem('token');
+      Cookies.remove('token');
       router.push('/login');
     }
     return { data, error, success, code };
@@ -58,15 +59,15 @@ const useUserApi = () => {
   ): Promise<IResponse<IUser>> => {
     const { data, error, success, code }: IResponse<IUser> =
       await FetchSpotifyApi({
-        url: `/users/${id}`,
+        url: `/user/${id}`,
         method: 'PUT',
         body,
         params: null,
-        accessToken: JSON.parse(localStorage.getItem('token') || '{}'),
+        accessToken: JSON.parse(Cookies.get('token') || '{}'),
         logout: null,
       });
     if (code === 400 || code === 401) {
-      localStorage.removeItem('token');
+      Cookies.remove('token');
       router.push('/login');
     }
     return { data, error, success, code };
@@ -75,20 +76,20 @@ const useUserApi = () => {
   const deleteUser = async (id: string | number): Promise<IResponse<IUser>> => {
     const { data, error, success, code }: IResponse<IUser> =
       await FetchSpotifyApi({
-        url: `/users/${id}`,
+        url: `/user/${id}`,
         method: 'DELETE',
         params: null,
-        accessToken: JSON.parse(localStorage.getItem('token') || '{}'),
+        accessToken: JSON.parse(Cookies.get('token') || '{}'),
         logout: null,
       });
     if (code === 400 || code === 401) {
-      localStorage.removeItem('token');
+      Cookies.remove('token');
       router.push('/login');
     }
     return { data, error, success, code };
   };
 
-  return { getUsers, getUserDetails, createUser, updateUser, deleteUser };
+  return { getuser, getUserDetails, createUser, updateUser, deleteUser };
 };
 
 export default useUserApi;

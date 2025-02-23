@@ -1,11 +1,16 @@
 interface ILoading {
   isLoad: boolean;
-  color?: 'yellow' | 'orange' | 'black';
+  color?: 'yellow' | 'orange' | '#0a0a0a';
   width?: number;
   height?: number;
 }
 
-function Index({ isLoad, color = 'black', width = 40, height = 40 }: ILoading) {
+function Index({
+  isLoad,
+  color = '#0a0a0a',
+  width = 40,
+  height = 40,
+}: ILoading) {
   return (
     <div style={!isLoad ? { visibility: 'hidden' } : { visibility: 'visible' }}>
       <svg
@@ -39,7 +44,7 @@ function Index({ isLoad, color = 'black', width = 40, height = 40 }: ILoading) {
 }
 
 Index.defaultProps = {
-  color: 'black',
+  color: '#0a0a0a',
   width: 40,
   height: 40,
 };

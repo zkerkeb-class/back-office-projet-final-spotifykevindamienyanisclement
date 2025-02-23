@@ -40,6 +40,7 @@ export interface IAlbumCreate {
   title: string;
 
   image: IImage | null;
-  artistId: number;
-  groupId: number;
+  imageId: number;
+  artistId: number | null;
+  // groupId: number | null;
 }

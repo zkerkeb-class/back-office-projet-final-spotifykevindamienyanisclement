@@ -1,9 +1,10 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useEffect, useState, ChangeEvent } from 'react';
-import { FetchResponse } from '@/app/components/hooks/useFetch/interface';
-import useFetch from '@/app/components/hooks/useFetch/useFetch';
+import { useEffect, useState, ChangeEvent, useContext } from 'react';
+import { FetchResponse } from '@/components/hooks/interface';
+import Cookies from 'js-cookie';
+import useFetch from '@/components/hooks/useFetch';
 import Image from 'next/image';
 
 function Index() {
@@ -35,7 +36,7 @@ function Index() {
 
   useEffect(() => {
     if (data && data.token) {
-      localStorage.setItem('token', JSON.stringify(`Bearer ${data.token}`));
+      Cookies.set('token', `Bearer ${data.token}`);
       router.push('/');
     }
   }, [data, router]);

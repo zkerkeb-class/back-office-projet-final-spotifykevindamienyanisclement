@@ -19,7 +19,7 @@ function CardTrackManageDetails({ data: track }: IaProps) {
           height={200}
         />
       )}
-      <div className={styles.top}>
+      <div>
         <h1>{track.title}</h1>
         <Spacer height={20} />
       </div>

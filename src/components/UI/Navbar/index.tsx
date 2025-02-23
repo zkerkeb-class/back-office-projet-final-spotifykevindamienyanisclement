@@ -15,6 +15,9 @@ function Index() {
           <Link className={styles.link} href="/">
             Dashboard
           </Link>
+          {/* <Link className={styles.link} href="/user">
+            Users
+          </Link> */}
           <Link className={styles.link} href="/artist">
             Artists
           </Link>
@@ -23,6 +26,9 @@ function Index() {
           </Link>
           <Link className={styles.link} href="/album">
             Albums
+          </Link>
+          <Link className={styles.link} href="/track">
+            Tracks
           </Link>
         </div>
       </>

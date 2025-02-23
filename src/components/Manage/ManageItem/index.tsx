@@ -104,7 +104,7 @@ function ManageItem<T>({
     <div>
       {loading && (
         <WrapperCenter>
-          <Loading isLoad color="black" width={100} height={100} />
+          <Loading isLoad color="#0a0a0a" width={100} height={100} />
         </WrapperCenter>
       )}
 
@@ -114,15 +114,6 @@ function ManageItem<T>({
           dataForm={data}
           Form={FormEdit}
           onSubmit={handleEdit}
-        />
-      )}
-
-      {isCreateModalOpen && (
-        <EditItem
-          setIsOpen={setIsCreateModalOpen}
-          dataForm={{} as Partial<T>}
-          Form={FormEdit}
-          onSubmit={handleCreate}
         />
       )}
 
@@ -154,18 +145,10 @@ function ManageItem<T>({
         <CardManageItem
           data={data}
           Card={Card}
-          setIsCreateModalOpen={setIsCreateModalOpen}
           setIsDeleteModalOpen={setIsDeleteModalOpen}
           setIsEditModalOpen={setIsOpen}
         />
       )}
-
-      <Button
-        title="Créer"
-        className="btn__primary"
-        handleClick={() => setIsCreateModalOpen(true)}
-        type="button"
-      />
 
       {error && <div className="text-red-500 mt-4">{error.message}</div>}
       <Spacer height={100} />

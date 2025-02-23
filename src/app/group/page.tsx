@@ -5,15 +5,23 @@ import ManageList from '@/components/Manage/ManageList';
 import CardGroupManage from '@/components/Card/Group/CardGroupManage';
 import WrapperGroup from '@/components/Wrapper/WrapperGroup';
 import FormGroupFull from '@/components/Form/FormGroupFull';
-import { IGroup } from '@/types/group';
+import Button from '@/components/UI/Button';
+import { useRouter } from 'next/navigation';
 import styles from './index.module.scss';
 
 function Index() {
-  const { getGroups, createGroup, deleteGroup, updateGroup } = useGroupApi();
+  const { getGroups, deleteGroup, updateGroup } = useGroupApi();
+  const router = useRouter();
 
   return (
     <div className={styles.container}>
-      <h2>Groupes</h2>
+      <h1>Manage Groups</h1>
+      <Button
+        title="Create Group"
+        className="btn__big"
+        handleClick={() => router.push('/group/create')}
+        type="button"
+      />
       <ManageList
         Card={CardGroupManage}
         FormEdit={FormGroupFull}
@@ -21,7 +29,7 @@ function Index() {
         // createDataAPI={createGroup}
         deleteDataAPI={deleteGroup}
         editDataAPI={updateGroup}
-        limit={10}
+        limit={15}
         Wrapper={WrapperGroup}
       />
     </div>

@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react';
 import Input from '@/components/UI/Input';
 import normalizeImageUrl from '@/utils/normalizeImageUrl';
-import FileUploader from '@/components/UI/FileUploader';
+import ImageUploader from '@/components/UI/ImageUploader';
 
 interface IFormEventCreate {
   dataForm: any;
@@ -26,11 +26,11 @@ function FormUserFull({
         onChange={(e: any) => handleChange(e)}
         value={dataForm?.name}
       />
-      <FileUploader
+      <ImageUploader
         label="Image de l'utilisateur"
         name="image"
         acceptImagesOnly
-        defaultValue={normalizeImageUrl(dataForm?.image.formattedImageURL)}
+        defaultValue={normalizeImageUrl(dataForm?.image?.formattedImageURL)}
         onFileUpload={(file: any) => {
           const image = {
             target: {

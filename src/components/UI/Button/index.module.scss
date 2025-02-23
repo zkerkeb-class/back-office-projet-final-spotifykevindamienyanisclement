@@ -13,13 +13,13 @@
   padding: 5px 15px;
   font-size: 1em;
   font-weight: 400;
-  color: black;
+  color: #0a0a0a;
   text-align: center;
   text-decoration: none;
   vertical-align: middle;
   cursor: pointer;
   transition: 0.3s all;
-  background-color: white;
+  background-color: #ededed;
   border-radius: 0.5rem;
 
   &:disabled {
@@ -29,7 +29,7 @@
 
   &__primary {
     background: rgba(255, 219, 136, 1);
-    color: black;
+    color: #0a0a0a;
     border: 1px solid rgba(255, 219, 136, 1);
     border-radius: 30px;
     margin-bottom: 5px;
@@ -39,7 +39,7 @@
     justify-content: center;
 
     &:hover {
-      background: white;
+      background: #ededed;
       color: #1db954;
       border: 1px solid #1db954;
     }
@@ -62,7 +62,7 @@
 
   &__secondary {
     background: rgb(255, 255, 255);
-    color: black;
+    color: #0a0a0a;
     border: 1px solid rgba(255, 219, 136, 1);
     border-radius: 30px;
     margin-bottom: 5px;
@@ -73,7 +73,7 @@
 
     &:hover {
       background: #1db954;
-      color: white;
+      color: #ededed;
       border: 1px solid #1db954;
     }
 
@@ -97,7 +97,7 @@
 
   &__ternary {
     background: #ffdb88;
-    color: black;
+    color: #0a0a0a;
     border: 1px solid #ffdb88;
     border-radius: 30px;
     margin-bottom: 5px;
@@ -107,8 +107,8 @@
     justify-content: center;
 
     &:hover {
-      background: white;
-      color: black;
+      background: #ededed;
+      color: #0a0a0a;
       border: 1px solid #ffdb88;
     }
 
@@ -121,7 +121,7 @@
 
     &__secondary {
       background: rgb(255, 255, 255);
-      color: black;
+      color: #0a0a0a;
       border: 1px solid rgba(255, 219, 136, 1);
       border-radius: 10px;
       width: 100%;
@@ -142,16 +142,16 @@
       }
 
       &:hover {
-        background: white;
+        background: #ededed;
         border: 1px solid rgba(255, 219, 136, 1);
-        color: black;
+        color: #0a0a0a;
       }
     }
   }
 
   &__important {
     background: #ff7455;
-    color: white;
+    color: #ededed;
     border: 1px solid #ff7455;
     border-radius: 30px;
     display: flex;
@@ -165,7 +165,7 @@
     }
 
     &:hover {
-      background: white;
+      background: #ededed;
       color: #ff7455;
       border: 1px solid #ff7455;
     }
@@ -173,13 +173,13 @@
 
   &__remove {
     background: #ffdb88;
-    color: black;
+    color: #0a0a0a;
     border-radius: 10px;
     font-size: 1em;
     padding: 5px 10px;
     margin: 1px;
     display: flex;
-    @include cross(20px, black, 2px);
+    @include cross(20px, #0a0a0a, 2px);
 
     .title {
       justify-self: center;
@@ -191,7 +191,7 @@
 
   &__register {
     background: #ffdb88;
-    color: black;
+    color: #0a0a0a;
     border: 1px solid #ffdb88;
     border-radius: 5px;
     width: 100%;
@@ -207,8 +207,8 @@
     }
 
     &:hover {
-      background: white;
-      color: black;
+      background: #ededed;
+      color: #0a0a0a;
       border: 1px solid #ffdb88;
     }
   }
@@ -216,7 +216,7 @@
   &__icon {
     &__selected {
       background: #ffdb88;
-      color: black;
+      color: #0a0a0a;
       border: 1px solid #ffdb88;
       border-radius: 8px;
       width: 70px;
@@ -226,9 +226,9 @@
     }
 
     &__unselected {
-      background: white;
+      background: #ededed;
       color: rgba(152, 153, 160, 1);
-      border: 1px solid white;
+      border: 1px solid #ededed;
       border-radius: 8px;
       width: 70px;
       height: 68px;
@@ -247,7 +247,7 @@
       align-items: center;
 
       .icon {
-        color: black;
+        color: #0a0a0a;
         margin: auto;
       }
 

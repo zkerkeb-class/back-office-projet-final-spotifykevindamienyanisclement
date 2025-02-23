@@ -72,7 +72,7 @@ function Index({
         <Icon width={20} height={20} className={styles.icon__close} />
       )}
       {title && <p className={styles.title}>{title}</p>}
-      {loading && <Loading isLoad color="black" width={40} height={40} />}
+      {loading && <Loading isLoad color="#0a0a0a" width={40} height={40} />}
     </button>
   );
 }

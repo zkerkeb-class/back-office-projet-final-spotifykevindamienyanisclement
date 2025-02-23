@@ -1,6 +1,7 @@
 import { IResponse } from '@/types/response';
 import { ITrack, ITrackFull } from '@/types/track';
 import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 import FetchSpotifyApi from './fetch';
 
 const useTrackApi = () => {
@@ -41,12 +42,13 @@ const useTrackApi = () => {
         url: '/track',
         method: 'POST',
         body,
+        formData: null,
         params: null,
-        accessToken: JSON.parse(localStorage.getItem('token') || '{}'),
+        accessToken: JSON.parse(Cookies.get('token') || '{}'),
         logout: null,
       });
     if (code === 400 || code === 401) {
-      localStorage.removeItem('token');
+      Cookies.remove('token');
       router.push('/login');
     }
     return { data, error, success, code };
@@ -62,11 +64,11 @@ const useTrackApi = () => {
         method: 'PUT',
         body,
         params: null,
-        accessToken: JSON.parse(localStorage.getItem('token') || '{}'),
+        accessToken: JSON.parse(Cookies.get('token') || '{}'),
         logout: null,
       });
     if (code === 400 || code === 401) {
-      localStorage.removeItem('token');
+      Cookies.remove('token');
       router.push('/login');
     }
     return { data, error, success, code };
@@ -80,11 +82,11 @@ const useTrackApi = () => {
         url: `/track/${id}`,
         method: 'DELETE',
         params: null,
-        accessToken: JSON.parse(localStorage.getItem('token') || '{}'),
+        accessToken: JSON.parse(Cookies.get('token') || '{}'),
         logout: null,
       });
     if (code === 400 || code === 401) {
-      localStorage.removeItem('token');
+      Cookies.remove('token');
       router.push('/login');
     }
     return { data, error, success, code };

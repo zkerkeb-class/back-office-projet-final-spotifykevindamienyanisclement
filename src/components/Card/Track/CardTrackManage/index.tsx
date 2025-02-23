@@ -37,11 +37,8 @@ function CardTrackManage({ data: track }: IaProps) {
             height={200}
           />
         )}
-
-        <div className={styles.card}>
-          <div className={styles.text}>
-            <h1>{track?.title}</h1>
-          </div>
+        <div className={styles.text}>
+          <h1>{track?.title}</h1>
         </div>
       </div>
     </div>

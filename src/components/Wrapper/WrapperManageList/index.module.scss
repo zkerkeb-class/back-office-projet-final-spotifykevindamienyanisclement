@@ -1,0 +1,15 @@
+.dashboard_wrapper {
+  width: 80%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  height: 80vh;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgb(50, 50, 50);
+  border-radius: 15px;
+  background-color: rgb(39, 39, 39);
+  cursor: pointer;
+}

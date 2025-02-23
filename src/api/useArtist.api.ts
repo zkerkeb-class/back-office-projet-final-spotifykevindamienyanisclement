@@ -1,5 +1,6 @@
 import { IResponse } from '@/types/response';
 import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 import FetchSpotifyApi from './fetch';
 
 const useArtistApi = () => {
@@ -41,11 +42,11 @@ const useArtistApi = () => {
       method: 'POST',
       body: data,
       params: null,
-      accessToken: JSON.parse(localStorage.getItem('token') || '{}'),
+      accessToken: JSON.parse(Cookies.get('token') || '{}'),
       logout: null,
     });
     if (code === 400 || code === 401) {
-      localStorage.removeItem('token');
+      Cookies.remove('token');
       router.push('/login');
     }
     return { data: responseData, error, success, code };
@@ -62,11 +63,11 @@ const useArtistApi = () => {
       method: 'PUT',
       body: data,
       params: null,
-      accessToken: JSON.parse(localStorage.getItem('token') || '{}'),
+      accessToken: JSON.parse(Cookies.get('token') || '{}'),
       logout: null,
     });
     if (code === 400 || code === 401) {
-      localStorage.removeItem('token');
+      Cookies.remove('token');
       router.push('/login');
     }
     return { data: responseData, error, success, code };
@@ -77,7 +78,7 @@ const useArtistApi = () => {
       url: `/artist/${id}`,
       method: 'DELETE',
       params: null,
-      accessToken: JSON.parse(localStorage.getItem('token') || '{}'),
+      accessToken: JSON.parse(Cookies.get('token') || '{}'),
       logout: null,
     });
     if (code === 400 || code === 401) {
@@ -86,12 +87,33 @@ const useArtistApi = () => {
     return { data, error, success, code };
   };
 
+  const getArtistAlbums = async (
+    limit: number,
+    offset: number,
+    id: number | string
+  ): Promise<IResponse> => {
+    const { data, error, success, code }: IResponse = await FetchSpotifyApi({
+      url: `/artist/${id}`,
+      method: 'GET',
+      params: { limit, offset },
+      accessToken: null,
+      logout: null,
+    });
+    const albums = data?.albums;
+    if (!albums) {
+      return { data: [], error, success, code };
+    }
+    console.log(albums);
+    return { data: albums, error, success, code };
+  };
+
   return {
     getArtists,
     getArtistDetails,
     createArtist,
     updateArtist,
     deleteArtist,
+    getArtistAlbums,
   };
 };
 

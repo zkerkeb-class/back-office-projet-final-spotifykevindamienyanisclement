@@ -51,6 +51,8 @@
     "consistent-return": "off",
     "@typescript-eslint/consistent-return": "off",
     "jsx-a11y/label-has-associated-control": "off",
+    "react/jsx-props-no-spreading": "off",
+    "radix": "warn",
     "prettier/prettier": [
       "error",
       {

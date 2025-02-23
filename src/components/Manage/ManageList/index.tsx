@@ -10,15 +10,22 @@ import FullCard from '@/components/Card/Manage/CardManageList';
 import EditItem from '@/components/Manage/EditItem';
 import Modal from '@/components/UI/Modal';
 import Button from '@/components/UI/Button';
+import { get } from 'http';
 
 interface IManageList {
   Card: FC<any>;
-  getDataAPI: (limit: number, offset: number) => Promise<any>;
+  getDataAPI?: (limit: number, offset: number) => Promise<any>;
+  getDataIdAPI?: (
+    limit: number,
+    offset: number,
+    id: number | string
+  ) => Promise<any>;
   editDataAPI: (id: string, data: any) => Promise<any>;
   deleteDataAPI: (id: string) => Promise<any>;
   FormEdit: FC<any>;
   limit: number;
   Wrapper: FC<any>;
+  id?: number | string;
 }
 
 interface IData {
@@ -29,11 +36,13 @@ interface IData {
 function ManageList({
   Card,
   getDataAPI,
+  getDataIdAPI,
   editDataAPI,
   deleteDataAPI,
   FormEdit,
   limit,
   Wrapper,
+  id,
 }: IManageList) {
   const [dataArray, setDataArray] = useState<IData[]>([]);
   const [hasMore, setHasMore] = useState<boolean>(true);
@@ -49,20 +58,39 @@ function ManageList({
     if (page === -1) return;
     setLoading(true);
     const offset = page * limit;
-    getDataAPI(limit, offset).then(({ data, success, code }: IResponse) => {
-      if (code === 404 || !success || data?.length === 0) {
-        setHasMore(false);
-        setLoading(false);
-        return;
-      }
-      // delete duplicate data
-      const filteredData = data.filter(
-        (item: any) => !dataArray.some(existing => existing.id === item.id)
+    if (id && getDataIdAPI) {
+      getDataIdAPI(limit, offset, id).then(
+        ({ data, success, code }: IResponse) => {
+          if (code === 404 || !success || data?.length === 0) {
+            setHasMore(false);
+            setLoading(false);
+            return;
+          }
+          // delete duplicate data
+          const filteredData = data.filter(
+            (item: any) => !dataArray.some(existing => existing.id === item.id)
+          );
+          if (filteredData.length < limit) setHasMore(false);
+          setDataArray([...dataArray, ...data]);
+          setLoading(false);
+        }
       );
-      if (filteredData.length < limit) setHasMore(false);
-      setDataArray([...dataArray, ...data]);
-      setLoading(false);
-    });
+    } else if (getDataAPI) {
+      getDataAPI(limit, offset).then(({ data, success, code }: IResponse) => {
+        if (code === 404 || !success || data?.length === 0) {
+          setHasMore(false);
+          setLoading(false);
+          return;
+        }
+        // delete duplicate data
+        const filteredData = data.filter(
+          (item: any) => !dataArray.some(existing => existing.id === item.id)
+        );
+        if (filteredData.length < limit) setHasMore(false);
+        setDataArray([...dataArray, ...data]);
+        setLoading(false);
+      });
+    }
   };
 
   useEffect(() => {
@@ -179,5 +207,11 @@ function ManageList({
     </>
   );
 }
+
+ManageList.defaultProps = {
+  getDataAPI: undefined,
+  getDataIdAPI: undefined,
+  id: undefined,
+};
 
 export default ManageList;

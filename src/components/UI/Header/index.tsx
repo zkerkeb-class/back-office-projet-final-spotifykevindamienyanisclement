@@ -15,9 +15,9 @@ function Index() {
         <div className={styles.header}>
           <Link className={styles.link} href="/">
             <Image
-              src="/spotify_full_logo_white.png"
+              src="/spotify-full-logo.svg"
               alt="Spotify"
-              width={146}
+              width={140}
               height={40}
             />
           </Link>

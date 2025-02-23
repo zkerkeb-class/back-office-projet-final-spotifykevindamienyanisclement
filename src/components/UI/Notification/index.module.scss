@@ -1,0 +1,32 @@
+.notification {
+  padding: 10px;
+  border-radius: 4px;
+  margin: 20px 0;
+
+  &.success {
+    border: 1px solid green;
+    background: green;
+
+    p {
+      color: #ededed;
+    }
+  }
+
+  &.error {
+    border: 1px solid red;
+    background: red;
+
+    p {
+      color: #ededed;
+    }
+  }
+
+  &.warning {
+    border: 1px solid rgb(255 219 136 / 100%);
+    background: rgb(255 219 136 / 100%);
+
+    p {
+      color: #0a0a0a;
+    }
+  }
+}

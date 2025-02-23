@@ -43,7 +43,7 @@ function Index({ id, Card, getDataAPI }: IFetchItemById) {
     <div>
       {loading && (
         <WrapperCenterFull>
-          <Loading isLoad color="black" width={40} height={40} />
+          <Loading isLoad color="#0a0a0a" width={40} height={40} />
         </WrapperCenterFull>
       )}
       {error && (

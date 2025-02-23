@@ -27,7 +27,7 @@ const FetchSpotifyApi = async ({
     const timeout = new Promise<never>((_, reject) => {
       setTimeout(() => {
         reject(new Error('Request Timeout'));
-      }, 10000);
+      }, 1000000);
     });
 
     const urlParams = new URLSearchParams(params).toString();
@@ -61,11 +61,15 @@ const FetchSpotifyApi = async ({
       responsePromise,
       timeout,
     ])) as Response;
-    const dataJson = await response.json();
     const statusCode = response.status;
     if (statusCode === 401 && logout) {
       logout();
     }
+    if (statusCode === 204) {
+      success = true;
+      return { data, error, success, code: statusCode };
+    }
+    const dataJson = await response.json();
     if (statusCode < 200 || statusCode >= 300) {
       error = new Error(dataJson.message);
       return { data, error, success, code: statusCode };

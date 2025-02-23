@@ -1,6 +1,9 @@
+'use client';
+
 import { IResponse } from '@/types/response';
 import { IAlbum } from '@/types/album';
 import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 import FetchSpotifyApi from './fetch';
 
 const useAlbumApi = () => {
@@ -42,11 +45,11 @@ const useAlbumApi = () => {
         method: 'POST',
         body,
         params: null,
-        accessToken: JSON.parse(localStorage.getItem('token') || '{}'),
+        accessToken: JSON.parse(Cookies.get('token') || '{}'),
         logout: null,
       });
     if (code === 400 || code === 401) {
-      localStorage.removeItem('token');
+      Cookies.remove('token');
       router.push('/login');
     }
     return { data, error, success, code };
@@ -62,11 +65,11 @@ const useAlbumApi = () => {
         method: 'PUT',
         body,
         params: null,
-        accessToken: JSON.parse(localStorage.getItem('token') || '{}'),
+        accessToken: JSON.parse(Cookies.get('token') || '{}'),
         logout: null,
       });
     if (code === 400 || code === 401) {
-      localStorage.removeItem('token');
+      Cookies.remove('token');
       router.push('/login');
     }
     return { data, error, success, code };
@@ -80,17 +83,44 @@ const useAlbumApi = () => {
         url: `/album/${id}`,
         method: 'DELETE',
         params: null,
-        accessToken: JSON.parse(localStorage.getItem('token') || '{}'),
+        accessToken: JSON.parse(Cookies.get('token') || '{}'),
         logout: null,
       });
     if (code === 400 || code === 401) {
-      localStorage.removeItem('token');
+      Cookies.remove('token');
       router.push('/login');
     }
     return { data, error, success, code };
   };
 
-  return { getAlbums, getAlbumDetails, createAlbum, updateAlbum, deleteAlbum };
+  const getAlbumTracks = async (
+    limit: number,
+    offset: number,
+    id: number | string
+  ): Promise<IResponse> => {
+    const { data, error, success, code }: IResponse = await FetchSpotifyApi({
+      url: `/album/${id}`,
+      method: 'GET',
+      params: { limit, offset },
+      accessToken: null,
+      logout: null,
+    });
+    const tracks = data?.tracks;
+    if (!tracks) {
+      return { data: [], error, success, code };
+    }
+    console.log(tracks);
+    return { data: tracks, error, success, code };
+  };
+
+  return {
+    getAlbums,
+    getAlbumDetails,
+    createAlbum,
+    updateAlbum,
+    deleteAlbum,
+    getAlbumTracks,
+  };
 };
 
 export default useAlbumApi;

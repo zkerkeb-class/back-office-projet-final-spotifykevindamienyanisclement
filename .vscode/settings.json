@@ -1,5 +1,5 @@
 {
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "editor.tabSize": 2,
   "files.autoSave": "onFocusChange",
   "javascript.validate.enable": false,
@@ -10,11 +10,7 @@
   "prettier.trailingComma": "all",
   "prettier.arrowParens": "avoid",
   "prettier.printWidth": 100,
-  "eslint.validate": [
-    "javascript",
-    "typescript",
-    "typescriptreact"
-  ],
+  "eslint.validate": ["javascript", "typescript", "typescriptreact"],
   "eslint.options": {
     "configFile": ".eslintrc.json"
   },
@@ -26,6 +22,7 @@
     "hooks",
     "config",
     "settings",
-    "init"
+    "init",
+    "dependencies"
   ]
 }

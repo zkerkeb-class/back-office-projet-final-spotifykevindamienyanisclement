@@ -1,4 +1,5 @@
 import { IResponse } from '@/types/response';
+import Cookies from 'js-cookie';
 import FetchSpotifyApi from './fetch';
 
 const useUploadApi = () => {
@@ -10,7 +11,7 @@ const useUploadApi = () => {
         body: null,
         formData,
         params: null,
-        accessToken: JSON.parse(localStorage.getItem('token') || '{}'),
+        accessToken: JSON.parse(Cookies.get('token') || '{}'),
         logout: null,
       });
     const image = data?.image;
@@ -25,7 +26,7 @@ const useUploadApi = () => {
         body: null,
         formData,
         params: null,
-        accessToken: JSON.parse(localStorage.getItem('token') || '{}'),
+        accessToken: JSON.parse(Cookies.get('token') || '{}'),
         logout: null,
       });
     const audio = data?.audio;

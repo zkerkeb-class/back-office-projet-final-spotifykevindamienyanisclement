@@ -1,14 +1,6 @@
 .card {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 20px;
-  padding: 20px;
-  transition: transform 0.3s ease;
-
-  &:hover {
-    transform: scale(1.05);
-  }
+  background-color: #0a0a0a;
+  z-index: 0;
 
   .btn_div {
     display: flex;
@@ -31,7 +23,7 @@
 
     .btn__primary {
       background-color: #1db954;
-      color: white;
+      color: #ededed;
       border: 1px solid #1db954;
     }
 
@@ -43,7 +35,7 @@
 
     .btn__important {
       background-color: #ff7455;
-      color: white;
+      color: #ededed;
       border: 1px solid #ff7455;
     }
   }

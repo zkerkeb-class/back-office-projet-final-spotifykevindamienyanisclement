@@ -37,4 +37,5 @@ export interface IArtistFull {
 export interface IArtistCreate {
   name: string;
   imageId: number;
+  groupId: number | null;
 }
