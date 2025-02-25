@@ -7,7 +7,7 @@ import FetchSpotifyApi from './fetch';
 const useUserApi = () => {
   const router = useRouter();
 
-  const getuser = async (
+  const getUsers = async (
     limit: number,
     offset: number
   ): Promise<IResponse<IUser[]>> => {
@@ -89,7 +89,7 @@ const useUserApi = () => {
     return { data, error, success, code };
   };
 
-  return { getuser, getUserDetails, createUser, updateUser, deleteUser };
+  return { getUsers, getUserDetails, createUser, updateUser, deleteUser };
 };
 
 export default useUserApi;

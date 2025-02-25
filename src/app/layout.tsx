@@ -4,6 +4,7 @@ import Header from '@/components/UI/Header';
 import Navbar from '@/components/UI/Navbar';
 import './globals.css';
 import UserProvider from '@/components/context/UserContext';
+import { Suspense } from 'react';
 
 const geistSans = localFont({
   src: '../../public/fonts/GeistVF.woff',
@@ -35,7 +36,7 @@ export default function RootLayout({
           <Header />
           <div className="container">
             <Navbar />
-            <div>{children}</div>
+            <Suspense>{children}</Suspense>
           </div>
         </body>
       </html>

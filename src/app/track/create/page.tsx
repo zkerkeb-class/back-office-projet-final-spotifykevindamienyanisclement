@@ -12,7 +12,8 @@ import { ITrackCreate } from '@/types/track';
 
 function EndPage({ resetForm }: { resetForm: () => void }) {
   const router = useRouter();
-  const albumId = useSearchParams().get('albumId');
+  const searchParams = useSearchParams();
+  const albumId = searchParams.get('albumId');
   return (
     <WrapperCenter>
       <p>Felicitations, Votre son a été créé avec succès !</p>
